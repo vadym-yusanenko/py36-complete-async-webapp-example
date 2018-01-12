@@ -1,0 +1,5 @@
+aiohttp==2.3.7
+aiohttp-jinja2==0.14.0
+aiopg==0.13.1
+chardet==3.0.4
+peewee-async==0.5.10
