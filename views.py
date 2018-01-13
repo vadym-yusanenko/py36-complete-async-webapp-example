@@ -13,9 +13,7 @@ from models import Record
 
 def database_requests_enabled(function):
     def _wrapped(*args, **kwargs):
-        return function(
-            *args, **kwargs, db_manager=Manager(DB_CONNECTION)
-        )
+        return function(*args, **kwargs, db_manager=Manager(DB_CONNECTION))
     return _wrapped
 
 
@@ -37,9 +35,7 @@ async def database_response_handle(_, db_manager):
             (
                 await db_manager.get(Record.select().order_by(fn.Random()))
             ).created_date,
-            (
-                await db_manager.count(Record.select())
-            )
+            await db_manager.count(Record.select())
         )
     )
 
