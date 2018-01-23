@@ -11,6 +11,7 @@ Typical Python web application
   	* Template engine: Django built-in, Jinja2, etc  
   	* __TODO__: Session layer: Pure Python or Framework built-in
   	* __TODO__: Cache: Redis, Memcached, etc
+  	* __TODO__: Jobs: Celery, etc
 
 Goals
 ===
@@ -26,11 +27,13 @@ Software selection
     * Database: peewee-async (most ORM frameworks have very limited async implementations because of lazy logic utilization, e.g. SQLAlchemy)
     * WSGI entry point: aiohttp
   	* Template engine: aiohttp-jinja2 
+  	* __TODO__: Session layer: aiohttp-session
   	* __TODO__: Cache: aioredis
+  	* __TODO__: Jobs: celery
 
 Notes
 ===
-  * It is possible to speed up Python async stack:
+  * It is possible to speed up Python async stack based on aiohttp:
     * Loop: use uvloop instead of asyncio built-in loop
     * Character encoding detector: cchardet instead of chardet
     * DNS resolving for outbound requests: aiodns instead of built-in
