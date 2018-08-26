@@ -1,16 +1,16 @@
 # Standard imports
 from os.path import dirname, realpath, join
 
+# Third-party imports
+from aiohttp.web import Application, run_app
+from aiohttp_jinja2 import setup as jinja2_setup
+from jinja2 import FileSystemLoader
+
 # Project imports
 from models import Record
 from settings import DB_CONNECTION
 from views import raw_response_handle, html_response_handle, \
     database_response_handle, service_response_handle
-
-# Third-party imports
-from aiohttp.web import Application, run_app
-from aiohttp_jinja2 import setup as jinja2_setup
-from jinja2 import FileSystemLoader
 
 
 # TODO: TYPO: "Error, trying to run delete coroutinewith wrong query class"

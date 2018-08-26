@@ -1,3 +1,6 @@
+# Standard imports
+from asyncio import gather
+
 # Third-party imports
 from aiohttp import ClientSession
 from aiohttp.web import Response
@@ -30,12 +33,13 @@ async def html_response_handle(request):
 
 @database_requests_enabled
 async def database_response_handle(_, db_manager):
+    results = await gather(
+        db_manager.get(Record.select().order_by(fn.Random())),
+        db_manager.count(Record.select())
+    )
     return Response(
         text='Random record date: {}\nRecords overall: {}'.format(
-            (
-                await db_manager.get(Record.select().order_by(fn.Random()))
-            ).created_date,
-            await db_manager.count(Record.select())
+            results[0].created_date, results[1]
         )
     )
 
